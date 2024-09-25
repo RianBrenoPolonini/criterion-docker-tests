@@ -17,29 +17,18 @@ git clone git@github.com:RianBrenoPolonini/criterion-docker-tests.git
 cd criterion-docker-tests
 ```
 
-### 2. Build da imagem Docker
+### 2. Executar os testes
 
-Crie a imagem Docker que contém o ambiente necessário para compilar e rodar os testes:
+Execute o script `run_tests.sh`:
 
 ```bash
-docker build -t tests .
+./run_tests.sh
 ```
 
-### 3. Executar os testes
+Isso vai compilar o código com as flags `-Wall -Wextra -Werror` e rodar os testes automaticamente dentro de um container Docker. Os resultados dos testes serão exibidos no terminal, se todos os testes passarem, você verá uma mensagem de sucesso, mas caso contrário, você verá uma mensagem de falha e os testes que falharam. No final, o container será removido.
 
-Depois de criar a imagem, execute o contêiner para rodar os testes:
-
-```bash
-docker run tests
-```
-
-Isso vai compilar o código com as flags -Wall -Wextra -Werror e rodar os testes automaticamente.
-
-### 4. Modificações e rerun dos testes
-
-Sempre que você fizer alterações no código ou nos arquivos de teste, você precisará rebuildar a imagem para que o Docker inclua as mudanças:
+Caso tenha problema com permissões, execute o comando abaixo:
 
 ```bash
-docker build -t tests .
-docker run tests
+chmod +x run_tests.sh
 ```
